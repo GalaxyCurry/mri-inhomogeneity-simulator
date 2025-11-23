@@ -1,5 +1,9 @@
 # MRI Inhomogeneity Simulator
 
+# contact information
+Should you require a dataset， please feel free to contact me.::::lmy15933285944@163.com
+
+
 A lightweight, flexible tool for simulating **MRI scan data inhomogeneity** , with a focus on realistic polynomial-based bias field generation. 
 
 This tool is designed to help researchers/engineers:
@@ -14,7 +18,7 @@ This tool is designed to help researchers/engineers:
 ✅ Lightweight dependency (only NumPy + SciPy)  
 ✅ Easy integration with medical imaging workflows  
 
-# 磁共振不均匀性数据仿真工具
+# 磁共振不均匀性数据仿真
 
 一款轻量、灵活的MRI扫描数据不均匀性仿真代码，专注于生成真实的多项式偏场。
 
