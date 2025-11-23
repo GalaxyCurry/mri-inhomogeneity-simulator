@@ -37,23 +37,9 @@ This tool is designed to help researchers/engineers:
 
 mri-inhomogeneity-simulator/
 ├── src/                      # 核心代码目录
-│   ├── __init__.py           # 包初始化（导出核心函数）
-│   ├── bias_field.py         # 偏场生成核心代码（优化后的generate_polynomial_bias）
-│   └── extensions/           # 扩展功能（未来可添加其他偏场模型）
-│       ├── __init__.py
-│       └── physical_bias.py  # 物理模型偏场（如B0不均匀性，可选扩展）
-├── examples/                 # 示例脚本（快速上手）
-│   ├── basic_polynomial_bias.py  # 多项式偏场基础使用
-│   ├── 6th_order_bias_demo.py    # 6阶偏场生成示例
-│   ├── integrate_with_mri_data.py # 与真实MRI数据结合示例
-│   └── visualization.py      # 偏场可视化脚本（matplotlib/plotly）
+├── examples/                 # 示例脚本
 ├── docs/                     # 文档目录
-│   ├── parameters.md         # 参数详细说明
-│   ├── usage_guide.md        # 使用指南
-│   └── theory.md             # 偏场仿真理论基础（可选）
-├── tests/                    # 单元测试
-│   ├── __init__.py
-│   └── test_bias_field.py    # 偏场生成正确性测试
+│   ├── paper/
 ├── requirements.txt          # 依赖清单
 ├── LICENSE                   # 开源许可证
 └── README.md                 # 仓库首页文档（中英文简介+使用说明）
