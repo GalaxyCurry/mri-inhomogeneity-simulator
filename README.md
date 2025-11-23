@@ -39,7 +39,12 @@ mri-inhomogeneity-simulator/
 ├── src/                      # 核心代码目录
 ├── examples/                 # 示例脚本
 ├── docs/                     # 文档目录
-│   ├── paper/
+│   ├── paper/                # 参考文献
+├── dataset/                  # 数据集
+│   ├── sequence1/ 
+│   ├── sequence2/
+│   ├── ......
+│   ├── sequenceN/                   
 ├── requirements.txt          # 依赖清单
 ├── LICENSE                   # 开源许可证
 └── README.md                 # 仓库首页文档（中英文简介+使用说明）

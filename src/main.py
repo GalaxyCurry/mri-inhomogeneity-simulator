@@ -9,7 +9,8 @@ def batch_mri_random_simulation(root_dir):
     
     rng = np.random.default_rng()
 
-    sequences = ["IXI-T1", "IXI-T2", "IXI-PD"]
+    # 序列文件夹名字列表
+    sequences = ["T1", "T2", "PD"]
     
     method_params_ranges = {
         # 方法1：多项式偏场
@@ -34,6 +35,7 @@ def batch_mri_random_simulation(root_dir):
         }
     }
     
+    # 方法列表
     methods_order = ["polynomial", "gaussian", "random_smooth"]
     
     # 遍历每个序列文件夹
@@ -44,7 +46,7 @@ def batch_mri_random_simulation(root_dir):
             continue
         
         nii_files = [f for f in os.listdir(seq_dir) if f.endswith(".nii.gz")]
-        nii_files.sort()  # 按文件名排序，保证分组顺序一致
+        nii_files.sort()  
         total_files = len(nii_files)
         
         if total_files == 0:
@@ -57,7 +59,7 @@ def batch_mri_random_simulation(root_dir):
         # 核心：3:3:1 比例分配，第三组占 1/7，剩余平分给前两组
         group3_size = total_files // 7  # 第三组：1/7（整数除法保证不超比例）
         group1_size = (total_files - group3_size) // 2  # 前两组平分剩余文件
-        group2_size = total_files - group1_size - group3_size  # 第二组自动承接余数
+        group2_size = total_files - group1_size - group3_size  
 
         groups = [
             nii_files[:group1_size],  
@@ -65,13 +67,12 @@ def batch_mri_random_simulation(root_dir):
             nii_files[-group3_size:]  
         ]
         
-        # 打印分组信息
         print(f"分组情况：")
         print(f"  第一组（{methods_order[0]}）：{len(groups[0])} 个文件")
         print(f"  第二组（{methods_order[1]}）：{len(groups[1])} 个文件")
         print(f"  第三组（{methods_order[2]}）：{len(groups[2])} 个文件")
         
-        # 创建序列对应的输出根目录和日志文件
+        
         output_root = os.path.join(root_dir, f"{seq}_simulated_random")
         os.makedirs(output_root, exist_ok=True)
         
@@ -99,7 +100,7 @@ def batch_mri_random_simulation(root_dir):
             method_output_dir = os.path.join(output_root, method)
             os.makedirs(method_output_dir, exist_ok=True)
             
-            # 遍历组内每个文件
+            
             for file_idx, filename in enumerate(group_files):
                 input_path = os.path.join(seq_dir, filename)
                 base_name = os.path.splitext(os.path.splitext(filename)[0])[0]
@@ -134,9 +135,8 @@ def batch_mri_random_simulation(root_dir):
                     random_params["random_filter_sigma"] = rng.integers(*params_range["random_filter_sigma"])
                     random_params["random_noise_std"] = round(rng.uniform(*params_range["random_noise_std"]), 3)
                 
-                # 构造输出文件名（包含关键随机参数）
-                param_suffix = "_".join([f"{k}{v}" for k, v in random_params.items()])
-                output_filename = f"{base_name}_{method}_{param_suffix}.nii"
+                # 构造输出文件名（按原文件名输出）
+                output_filename = f"{base_name}.nii"
                 output_path = os.path.join(method_output_dir, output_filename)
                 
     
@@ -151,8 +151,7 @@ def batch_mri_random_simulation(root_dir):
                 with open(log_path, "a", encoding="utf-8") as log_file:
                     param_str = ", ".join([f"{k}={v}" for k, v in random_params.items()])
                     log_file.write(f"{global_idx+1:<6} {filename:<30} {method:<15} {param_str:<50}\n")
-                
-                print(f"  输出路径：{output_path}")
+            
                 print(f"  文件 {filename} 处理完成")
         
         print(f"\n===== 序列 {seq} 处理完成 =====")

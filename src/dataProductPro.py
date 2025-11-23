@@ -8,9 +8,22 @@ from scipy.stats import multivariate_normal
 def read_nii_file(nii_path):
     
     img = nib.load(nii_path)
-    data = img.get_fdata()  # (H, W, D) 三维数据
-    affine = img.affine  # 空间定位信息
+    data = img.get_fdata()  
+    affine = img.affine  
     return data, affine
+
+def save_nii_file(data, affine, save_path):
+
+    img = nib.Nifti1Image(data.astype(np.float32), affine)
+    nib.save(img, save_path)
+    print(f"仿真结果已保存至：{save_path}")
+
+
+
+
+
+
+
 
 
 
@@ -94,6 +107,17 @@ def generate_polynomial_bias(
     return bias
 
 
+
+
+
+
+
+
+
+
+
+
+
 def generate_gaussian_bias(field_shape, center_ratio=(0.5, 0.5, 0.5), sigma_ratio=0.2, intensity=0.4):
     """
     生成高斯分布偏场（模拟表面线圈局部强信号）
@@ -164,6 +188,16 @@ def generate_random_smooth_bias(field_shape, noise_std=0.3, filter_sigma=5, inte
     return bias
 
 
+
+
+
+
+
+
+
+
+
+
 def add_gaussian_noise(data, noise_percent=5):
     """
     添加高斯噪声（模拟磁共振图像噪声）
@@ -181,11 +215,7 @@ def add_gaussian_noise(data, noise_percent=5):
     return noisy_data
 
 
-def save_nii_file(data, affine, save_path):
-    """保存nii文件"""
-    img = nib.Nifti1Image(data.astype(np.float32), affine)
-    nib.save(img, save_path)
-    print(f"仿真结果已保存至：{save_path}")
+
 
 
 def simulate_mri_inhomogeneity(
@@ -246,17 +276,17 @@ def simulate_mri_inhomogeneity(
 
     save_nii_file(final_data, affine, output_nii_path)
 
-
+# ------------- 示例调用 -------------
 if __name__ == "__main__":
-    # -------------------------- 配置参数（可根据需求修改）--------------------------
-    INPUT_NII_PATH = "E:/IXI DATA/IXI-T1/IXI002-Guys-0828-T1.nii.gz"  # 输入nii文件路径
-    OUTPUT_NII_PATH = "E:/IXI DATA/simulated_inhomogeneous2.nii"  # 输出nii文件路径
+    
+    INPUT_NII_PATH = ""  # 输入nii文件路径
+    OUTPUT_NII_PATH = ""  # 输出nii文件路径
     BIAS_TYPE = "polynomial"  # 偏场类型：polynomial/gaussian/random_smooth
     BIAS_INTENSITY = 0.5  # 偏场强度（0-1，越大不均匀越明显）
     NOISE_PERCENT = 2  # 噪声强度（3-10为宜）
 
     # 多项式偏场专属参数（仅BIAS_TYPE="polynomial"时生效）
-    POLYNOMIAL_ORDER = 10  # 多项式阶数（2=二次，4=四次）
+    POLYNOMIAL_ORDER = 4  # 多项式阶数（2=二次，4=四次）
 
     # 高斯偏场专属参数（仅BIAS_TYPE="gaussian"时生效）
     GAUSSIAN_CENTER = (0.5, 0.5, 0.5)  # 偏场中心（图像中心比例，如(0.3,0.5,0.5)表示x方向30%处）
@@ -267,7 +297,7 @@ if __name__ == "__main__":
     RANDOM_FILTER_SIGMA = 8  # 平滑滤波强度（越大越光滑）
     # -----------------------------------------------------------------------------
 
-    # 运行仿真
+    
     simulate_mri_inhomogeneity(
         input_nii_path=INPUT_NII_PATH,
         output_nii_path=OUTPUT_NII_PATH,
