@@ -2,7 +2,7 @@ import os
 import numpy as np
 from datetime import datetime
 
-from dataProductPro import simulate_mri_inhomogeneity
+from dataProduct import simulate_mri_inhomogeneity
 
 
 def batch_mri_random_simulation(root_dir):
