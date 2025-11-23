@@ -149,14 +149,3 @@ $$I_{\text{distorted}} = B(x,y,z) \cdot I_{\text{ideal}} + N_{\text{image}}$$
 - 高斯偏场：重点控制中心坐标（避免边缘区域）与sigma参数（匹配干扰源范围），确保偏场集中在图像有效区域。
 - 随机光滑偏场：关键是平衡“随机噪声强度”与“滤波平滑度”，建议先固定 `random_filter_sigma=5`，再根据需要调整 `random_noise_std` 控制无规律程度。
 
-## 附录：LaTeX公式渲染说明
-本文中所有数学公式均采用标准LaTeX语法编写，使用 `$$公式$$` 包裹块级公式，确保渲染统一性。可在支持LaTeX渲染的Markdown编辑器（如Typora、VS Code+Markdown All in One插件、Obsidian、Overleaf）中直接显示。若需在不支持LaTeX的平台使用，可通过以下方式处理：
-1. 导出为PDF（直接保留公式格式）；
-2. 将公式逐一转换为图片格式替换；
-3. 保留原始LaTeX代码，后续在支持平台中重新渲染。
-
-公式中关键符号说明：
-- 下标使用 `_{\text{名称}}` 确保可读性（如 $I_{\text{distorted}}$）；
-- 概率分布符号使用 `\mathcal{N}` 表示正态分布；
-- 卷积运算使用 `*` 表示，符合工程领域习惯；
-- 求和、乘积符号分别使用 `\sum`、`\prod`，上下标明确约束范围。
