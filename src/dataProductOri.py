@@ -251,6 +251,7 @@ def simulate_mri_inhomogeneity(
             order=polynomial_order,
             intensity=bias_intensity
         )
+
     elif bias_type == "gaussian":
         bias = generate_gaussian_bias(
             field_shape=field_shape,
