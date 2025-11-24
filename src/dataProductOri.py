@@ -59,8 +59,6 @@ def generate_polynomial_bias(
     H, W, D = field_shape
     if not (1 <= order <= 6):
         raise ValueError("order必须在1-6之间（优化重点支持2-6阶）")
-    if not (0 <= intensity <= 1):
-        raise ValueError("intensity必须在0-1之间")
     if base_coeff <= 0 or decay_factor <= 0 or decay_factor >= 1 or cross_factor <= 0:
         raise ValueError("base_coeff>0、0<decay_factor<1、cross_factor>0")
     
@@ -279,10 +277,10 @@ def simulate_mri_inhomogeneity(
 # ------------- 示例调用 -------------
 if __name__ == "__main__":
     
-    INPUT_NII_PATH = ""  # 输入nii文件路径
-    OUTPUT_NII_PATH = ""  # 输出nii文件路径
-    BIAS_TYPE = "polynomial"  # 偏场类型：polynomial/gaussian/random_smooth
-    BIAS_INTENSITY = 0.5  # 偏场强度（0-1，越大不均匀越明显）
+    INPUT_NII_PATH = "E:/IXI DATA/IXI-PD/IXI013-HH-1212-PD.nii.gz"  # 输入nii文件路径
+    OUTPUT_NII_PATH = "E:/IXI DATA/333.nii.gz"  # 输出nii文件路径
+    BIAS_TYPE = "random_smooth"  # 偏场类型：polynomial/gaussian/random_smooth
+    BIAS_INTENSITY = 2  # 偏场强度（0-1，越大不均匀越明显）
     NOISE_PERCENT = 2  # 噪声强度（3-10为宜）
 
     # 多项式偏场专属参数（仅BIAS_TYPE="polynomial"时生效）
