@@ -279,7 +279,7 @@ if __name__ == "__main__":
     
     INPUT_NII_PATH = "E:/IXI DATA/IXI-PD/IXI013-HH-1212-PD.nii.gz"  # 输入nii文件路径
     OUTPUT_NII_PATH = "E:/IXI DATA/333.nii.gz"  # 输出nii文件路径
-    BIAS_TYPE = "random_smooth"  # 偏场类型：polynomial/gaussian/random_smooth
+    BIAS_TYPE = "polynomial"  # 偏场类型：polynomial/gaussian/random_smooth
     BIAS_INTENSITY = 2  # 偏场强度（0-1，越大不均匀越明显）
     NOISE_PERCENT = 2  # 噪声强度（3-10为宜）
 

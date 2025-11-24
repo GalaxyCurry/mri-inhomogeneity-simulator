@@ -18,6 +18,11 @@ This tool is designed to help researchers/engineers:
 ✅ Lightweight dependency (only NumPy + SciPy)  
 ✅ Easy integration with medical imaging workflows  
 
+
+![alt text](nifti_middle_slice_with_gt_comparison.png)
+
+
+
 # 磁共振不均匀性数据仿真
 
 一款轻量、灵活的MRI扫描数据不均匀性仿真代码，专注于生成真实的多项式偏场。
